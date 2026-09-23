@@ -133,6 +133,29 @@ api.defaults.adapter = async (config) => {
         ],
         total: 1
       };
+    } else if (url.includes('/statements/generate-random')) {
+      responseData = {
+        message: 'Successfully generated 35 random statements',
+        success: true,
+        account_number: '12345678901',
+        transactions_generated: 35,
+        new_balance: 248750.00
+      };
+    } else if (url.includes('/statements/summary')) {
+      responseData = {
+        account_id: 'mock-acc-1',
+        account_number: '12345678901',
+        from_date: new Date(Date.now() - 90 * 86400000).toISOString(),
+        to_date: new Date().toISOString(),
+        opening_balance: 150000.00,
+        closing_balance: 248750.00,
+        total_credits: 170000.00,
+        total_debits: 71250.00,
+        credit_count: 5,
+        debit_count: 18,
+        net_flow: 98750.00,
+        total_transactions: 23
+      };
     } else if (url.includes('/admin/stats')) {
       responseData = {
         total_users: 10,
@@ -265,6 +288,61 @@ export const transactionsApi = {
     api.get(`/transactions/${accountId}`, { params }),
 }
 
+// ── Statements ────────────────────────────────────────────────
+export const statementsApi = {
+  generateRandom: (data: {
+    account_id?: string
+    count?: number
+    days?: number
+    clear_existing?: boolean
+    starting_balance?: number
+  }) => api.post('/statements/generate-random', data),
+
+  upload: (formData: FormData) =>
+    api.post('/statements/upload', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }),
+
+  adjustBalance: (accountId: string, amount: number, action: 'credit' | 'debit', description?: string) =>
+    api.post('/statements/adjust-balance', null, {
+      params: {
+        account_id: accountId,
+        amount,
+        action,
+        description,
+      },
+    }),
+
+  download: (
+    accountId: string,
+    format: string = 'pdf',
+    period: string = '3m',
+    fromDate?: string,
+    toDate?: string
+  ) =>
+    api.get('/statements/download', {
+      params: {
+        account_id: accountId,
+        format,
+        period,
+        from_date: fromDate,
+        to_date: toDate,
+      },
+      responseType: 'blob',
+    }),
+
+  summary: (accountId: string, period: string = '3m', fromDate?: string, toDate?: string) =>
+    api.get('/statements/summary', {
+      params: {
+        account_id: accountId,
+        period,
+        from_date: fromDate,
+        to_date: toDate,
+      },
+    }),
+}
+
+
 // ── Transfers ─────────────────────────────────────────────────
 export const transfersApi = {
   initiate: (data: object) => api.post('/transfers/initiate', data),
@@ -284,3 +362,4 @@ export const adminApi = {
   unlockUser: (id: string) => api.patch(`/admin/users/${id}/unlock`),
   listTransactions: (params?: object) => api.get('/admin/transactions', { params }),
 }
+

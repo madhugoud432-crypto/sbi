@@ -57,7 +57,7 @@ export default function TransactionsPage() {
                   <select className="form-control" style={{ width: 160 }} value={filters.accountId}
                     onChange={e => setFilters(f => ({ ...f, accountId: e.target.value }))}>
                     <option value="">All Accounts</option>
-                    {accounts.map(a => <option key={a.id} value={a.id}>{a.account_type.toUpperCase()} - {a.account_number.slice(-4)}</option>)}
+                    {accounts.map(a => <option key={a.id} value={a.id}>{a.account_type.toUpperCase()} - {a.account_number.slice(-8)}</option>)}
                   </select>
                 </div>
                 <div>

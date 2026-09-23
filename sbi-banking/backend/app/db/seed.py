@@ -59,6 +59,9 @@ TRANSACTIONS_DATA = [
 ]
 
 
+from app.services.statement_generator import populate_account_random_statements
+
+
 def seed():
     print("Creating tables...")
     Base.metadata.create_all(bind=engine)
@@ -118,7 +121,7 @@ def seed():
         db.add(customer2)
         db.flush()
 
-        print("Seeding accounts & transactions...")
+        print("Seeding accounts & realistic random statements...")
 
         # Savings account for Rahul
         savings = Account(
@@ -171,35 +174,6 @@ def seed():
             is_primary=False,
         )
         db.add(fd)
-        db.flush()
-
-        # Generate transactions for savings account
-        running_balance = Decimal("248750.00")
-        now = datetime.now(timezone.utc)
-
-        for i, (desc, txn_type, category, amount) in enumerate(TRANSACTIONS_DATA):
-            amt = Decimal(str(amount))
-            days_ago = len(TRANSACTIONS_DATA) - i
-            txn_date = now - timedelta(days=days_ago, hours=random.randint(0, 23))
-
-            txn = Transaction(
-                id=gen_uuid(),
-                account_id=savings.id,
-                transaction_ref=gen_ref(),
-                type=txn_type,
-                category=category,
-                amount=amt,
-                balance_after=running_balance,
-                description=desc,
-                value_date=txn_date,
-                channel="NET_BANKING",
-            )
-            db.add(txn)
-
-            if txn_type == TransactionType.DEBIT:
-                running_balance -= amt
-            else:
-                running_balance += amt
 
         # Beneficiary
         b = Beneficiary(
@@ -229,9 +203,19 @@ def seed():
             is_primary=True,
         )
         db.add(savings2)
-
         db.commit()
-        print("✅ Seed complete!")
+
+        # Generate realistic random multi-month statement history
+        print("Generating random statement history for Rahul's Savings Account (60 txns, 180 days)...")
+        populate_account_random_statements(db, savings.id, count=60, days_back=180, starting_balance=Decimal("180000.00"))
+
+        print("Generating random statement history for Rahul's Current Account (30 txns, 90 days)...")
+        populate_account_random_statements(db, current.id, count=30, days_back=90, starting_balance=Decimal("60000.00"))
+
+        print("Generating random statement history for Priya's Savings Account (35 txns, 90 days)...")
+        populate_account_random_statements(db, savings2.id, count=35, days_back=90, starting_balance=Decimal("95000.00"))
+
+        print("[OK] Seed complete with full random statement history!")
         print()
         print("=" * 50)
         print("Demo Credentials")
@@ -251,3 +235,4 @@ def seed():
 
 if __name__ == "__main__":
     seed()
+

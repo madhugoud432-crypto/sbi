@@ -298,7 +298,40 @@ class PaginatedResponse(BaseModel):
     pages: int
 
 
+# ── Statements Schemas ─────────────────────────────────────────
+class GenerateStatementsRequest(BaseModel):
+    account_id: Optional[str] = None
+    count: int = 35
+    days: int = 90
+    clear_existing: bool = False
+    starting_balance: Optional[Decimal] = None
+
+
+class StatementSummaryResponse(BaseModel):
+    account_id: str
+    account_number: str
+    from_date: datetime
+    to_date: datetime
+    opening_balance: Decimal
+    closing_balance: Decimal
+    total_credits: Decimal
+    total_debits: Decimal
+    credit_count: int
+    debit_count: int
+    net_flow: Decimal
+    total_transactions: int
+
+
+class StatementGenerationResponse(BaseModel):
+    message: str
+    success: bool = True
+    account_number: str
+    transactions_generated: int
+    new_balance: Decimal
+
+
 # ── Misc ──────────────────────────────────────────────────────
 class MessageResponse(BaseModel):
     message: str
     success: bool = True
+

@@ -9,6 +9,7 @@ import {
   ShieldCheck, UserCheck, CreditCard, Video, ArrowRight, CheckCircle, 
   Camera, Smartphone, Lock, Award, FileText, Play, ChevronDown, ChevronUp
 } from 'lucide-react';
+import SbiGlobalBrandHeader from '@/components/banking/SbiGlobalBrandHeader';
 import './open-savings-account.css';
 
 export default function OpenSavingsAccountPage() {
@@ -53,81 +54,8 @@ export default function OpenSavingsAccountPage() {
   return (
     <div className="osa-wrapper">
       
-      {/* ================= HEADER NAVBAR ================= */}
-      <header className="w-full">
-        {/* Dark Purple Strip */}
-        <div className="osa-top-bar">
-          <div className="osa-top-bar-inner">
-            <div className="flex items-center gap-2">
-              <button type="button" className="bg-white text-[#302985] font-bold px-3 py-1 rounded-t text-xs">
-                Personal Banking
-              </button>
-            </div>
-
-            <div className="flex items-center gap-4 text-xs text-white/90">
-              <a href="#mainContent" className="hover:underline">Skip to main content</a>
-              <span>|</span>
-              <a href="https://sbi.bank.in" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
-                Corporate website
-              </a>
-              <span>|</span>
-              <a href="https://crh.sbi.bank.in" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
-                <HelpCircle size={13} /> Get Help
-              </a>
-              <span>|</span>
-              <a href="https://wa.me/919022690226" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
-                <MessageSquare size={13} /> WhatsApp
-              </a>
-              <span>|</span>
-              <span>English ▾</span>
-              <span className="font-bold cursor-pointer">- A +</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Main White Navbar */}
-        <nav className="osa-main-nav" aria-label="Registration Navigation">
-          <div className="osa-main-nav-inner">
-            <Link href="/dashboard" className="flex items-center gap-2 mr-10">
-              <img 
-                src="https://cdn.onlineyono.sbi.bank.in//documents/d/sbi-yono-2.0/new-horz-logo_net-banking_svg" 
-                onError={(e) => { (e.target as HTMLImageElement).src = '/assets/images/yono_logo.svg'; }}
-                alt="YONO SBI Net-Banking Logo" 
-                className="h-9 w-auto object-contain"
-              />
-            </Link>
-
-            <ul className="flex items-center gap-2">
-              <li>
-                <Link href="/dashboard" className="osa-nav-link">
-                  <span>Home</span>
-                </Link>
-              </li>
-              <li>
-                <div className="osa-nav-link active">
-                  <span>Accounts &amp; Deposits</span>
-                  <div className="osa-nav-line" />
-                </div>
-              </li>
-              <li>
-                <Link href="#" className="osa-nav-link">
-                  <span>Loans</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="osa-nav-link">
-                  <span>Cards</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="osa-nav-link">
-                  <span>Investments</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      {/* ================= GLOBAL BRAND HEADER ================= */}
+      <SbiGlobalBrandHeader activeNav="Accounts" />
 
       {/* ================= MAIN CONTENT BODY ================= */}
       <main id="mainContent" className="osa-body">

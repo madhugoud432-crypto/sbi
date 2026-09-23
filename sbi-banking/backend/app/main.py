@@ -32,13 +32,17 @@ app = FastAPI(
 )
 
 # CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+cors_kwargs = {
+    "allow_credentials": True,
+    "allow_methods": ["*"],
+    "allow_headers": ["*"],
+}
+if "*" in settings.CORS_ORIGINS or settings.CORS_ORIGINS == ["*"]:
+    cors_kwargs["allow_origin_regex"] = ".*"
+else:
+    cors_kwargs["allow_origins"] = settings.CORS_ORIGINS
+
+app.add_middleware(CORSMiddleware, **cors_kwargs)
 
 # Routes
 app.include_router(api_router, prefix="/api/v1")

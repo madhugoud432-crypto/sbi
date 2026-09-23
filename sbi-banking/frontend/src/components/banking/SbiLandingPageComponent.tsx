@@ -4497,25 +4497,32 @@ function SbiLandingPageComponentContent({
                   // Standard Sidebar Content for Account Summary, Transactions, and Statements
                   <>
                     {/* Savings Account Card */}
-                    <div>
-                      <div className="bg-[#702082] text-white py-6.5 px-6 rounded-2xl shadow-xs space-y-1.5">
-                        <div className="text-[11px] font-bold opacity-80 uppercase tracking-wide">A/C Number</div>
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-sm tracking-wider font-semibold">
-                            {showAccountNo ? '10849207054' : 'XXXXXXX7054'}
-                          </span>
-                          <button 
-                            type="button" 
-                            onClick={() => setShowAccountNo(!showAccountNo)}
-                            className="text-white hover:opacity-80 transition-opacity"
-                            title={showAccountNo ? "Hide Account Number" : "Show Account Number"}
-                          >
-                            {showAccountNo ? <EyeOff size={16} /> : <Eye size={16} />}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                   <div className="mb-6">
+  <div className="bg-[#702082] rounded-2xl px-6 py-5 text-white shadow-sm">
+    <p className="text-[11px] font-bold uppercase tracking-wide opacity-80">
+      A/C Number
+    </p>
 
+    <div className="mt-2 flex items-center gap-2">
+      <span className="font-mono text-sm font-semibold tracking-[0.15em] leading-none">
+        {showAccountNo ? "10849207054" : "XXXXXXX7054"}
+      </span>
+
+      <button
+        type="button"
+        onClick={() => setShowAccountNo(!showAccountNo)}
+        className="flex items-center justify-center hover:opacity-80 transition"
+        title={showAccountNo ? "Hide Account Number" : "Show Account Number"}
+      >
+        {showAccountNo ? (
+          <EyeOff size={17} strokeWidth={2} />
+        ) : (
+          <Eye size={17} strokeWidth={2} />
+        )}
+      </button>
+    </div>
+  </div>
+</div>
                     {/* Action Buttons */}
                     <button
                       type="button"
@@ -5338,248 +5345,12 @@ function SbiLandingPageComponentContent({
           {/* ========================================================================= */}
           {/* TAB 3: LOANS (EXACT MATCH TO SCREENSHOT 1) */}
           {/* ========================================================================= */}
-          {activeTab === 'Loans' && (
-            <div className="space-y-6">
-              
-              {/* Inner White Box Card */}
-              <div className="bg-white rounded-2xl p-8 border border-purple-100/70 shadow-xs min-h-[460px] flex flex-col justify-between">
-                
-                {/* Top Nav Sub-Tabs Bar + View All Accounts Button */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-purple-100/70 pb-4 gap-4">
-                  
-                  {/* Category Sub-Tabs */}
-                  <div className="flex items-center gap-8">
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab('Transaction')}
-                      className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                    >
-                      Transaction Accounts
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab('Deposits')}
-                      className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                    >
-                      Deposits
-                    </button>
-                    <button
-                      type="button"
-                      className="text-xs font-extrabold text-[#5b2e80] relative pb-2"
-                    >
-                      <span>Loans</span>
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#5b2e80] rounded-full" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab('Investments')}
-                      className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                    >
-                      Investments
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab('Insurance')}
-                      className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                    >
-                      Insurance
-                    </button>
-                  </div>
-
-                  {/* View All Accounts > Pill Button */}
-                  <button
-                    type="button"
-                    onClick={() => router.push('/home/landingPage/lending/etb-manage-loan')}
-                    className="border border-[#5b2e80] text-[#5b2e80] hover:bg-[#5b2e80] hover:text-white px-5 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer shadow-3xs flex items-center gap-1"
-                  >
-                    <span>View All Accounts</span>
-                    <span>&gt;</span>
-                  </button>
-
-                </div>
-
-                {/* Main Split Grid (Left: Warning Sign, Middle: Dashed Line, Right: No records found) */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 my-auto items-center py-10">
-                  
-                  {/* Left Column: Warning Graphic Pole */}
-                  <div className="lg:col-span-5 flex items-center justify-center">
-                    <div className="w-56 h-40 relative flex items-center justify-center">
-                      <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                        <path d="M20 150 C60 120 110 135 160 150 Z" fill="#f5edfc" />
-                        <path d="M100 150 C150 110 190 130 230 150 Z" fill="#eee3fa" />
-                        <line x1="10" y1="150" x2="230" y2="150" stroke="#d8c5f2" strokeWidth="2" strokeDasharray="4 4" />
-                        <line x1="120" y1="50" x2="120" y2="150" stroke="#702082" strokeWidth="3" strokeLinecap="round" />
-                        <path d="M120 10 L155 65 L85 65 Z" fill="#ffffff" stroke="#702082" strokeWidth="5" strokeLinejoin="round" />
-                        <path d="M120 27 L120 45" stroke="#702082" strokeWidth="4" strokeLinecap="round" />
-                        <circle cx="120" cy="54" r="2.5" fill="#702082" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Vertical Dashed Divider (Visible on LG) */}
-                  <div className="hidden lg:block lg:col-span-2 flex justify-center">
-                    <div className="h-48 border-r border-dashed border-slate-300 mx-auto" />
-                  </div>
-
-                  {/* Right Column: No records found */}
-                  <div className="lg:col-span-5 flex items-center justify-center lg:justify-start">
-                    <p className="text-sm font-extrabold text-slate-700">
-                      No records found
-                    </p>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-          )}
+        
 
           {/* ========================================================================= */}
           {/* TAB 5: INSURANCE (EXACT MATCH TO USER REFERENCE SCREENSHOT) */}
           {/* ========================================================================= */}
-          {activeTab === 'Insurance' && (
-            <div className="space-y-6">
-              
-              {/* Top Nav Sub-Tabs Bar + View All Accounts Button */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-purple-100/70 pb-4 gap-4">
-                
-                {/* Category Sub-Tabs */}
-                <div className="flex items-center gap-8">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('Transaction')}
-                    className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                  >
-                    Transaction Accounts
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('Deposits')}
-                    className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                  >
-                    Deposits
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('Loans')}
-                    className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                  >
-                    Loans
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('Investments')}
-                    className="text-xs font-bold text-slate-500 hover:text-[#5b2e80] transition-colors"
-                  >
-                    Investments
-                  </button>
-                  <button
-                    type="button"
-                    className="text-xs font-extrabold text-[#5b2e80] relative pb-2"
-                  >
-                    <span>Insurance</span>
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#5b2e80] rounded-full" />
-                  </button>
-                </div>
-
-                {/* View All Accounts > Pill Button */}
-                <button
-                  type="button"
-                  onClick={() => router.push('/home/landingPage/manageRelationship/insurance')}
-                  className="border border-[#5b2e80] text-[#5b2e80] hover:bg-[#5b2e80] hover:text-white px-5 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer shadow-3xs flex items-center gap-1"
-                >
-                  <span>View All Accounts</span>
-                  <span>&gt;</span>
-                </button>
-
-              </div>
-
-              {/* Main Workspace Split Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                
-                {/* Left Column: Search & Action Buttons (4/12) */}
-                <div className="lg:col-span-4 space-y-4">
-                  
-                  {/* Search Box */}
-                  <div className="bg-white border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center gap-2 shadow-2xs">
-                    <Search size={16} className="text-slate-400" />
-                    <input
-                      type="text"
-                      placeholder="Search here..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full text-xs font-semibold text-slate-800 bg-transparent focus:outline-none placeholder:text-slate-400"
-                    />
-                  </div>
-
-                  {/* Link Policy > Pill Button */}
-                  <button
-                    type="button"
-                    onClick={() => toast.success('Opening Link Policy portal...')}
-                    className="w-full bg-white border border-[#673391] hover:bg-[#673391] hover:text-white text-[#673391] text-xs font-bold py-3 px-5 rounded-full transition-all flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
-                  >
-                    <span>Link Policy</span>
-                    <span>&gt;</span>
-                  </button>
-
-                  {/* Buy New Policy > Pill Button */}
-                  <Link
-                    href="/home/landingPage/jointVentures/insurances/general-insurance/dashboard?insuranceType=Life%20Insurance&insuranceCategory=1&isNativeValue=false"
-                    className="w-full bg-white border border-[#673391] hover:bg-[#673391] hover:text-white text-[#673391] text-xs font-bold py-3 px-5 rounded-full transition-all flex items-center justify-center gap-1.5 shadow-2xs block text-center cursor-pointer"
-                  >
-                    <span>Buy New Policy</span>
-                    <span>&gt;</span>
-                  </Link>
-
-                </div>
-
-                {/* Right Column: Empty State - Folder No Policies Found (8/12) */}
-                <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-2xl p-10 shadow-xs flex flex-col items-center justify-center text-center min-h-[420px]">
-                  
-                  {/* Pink Folder with Cross Graphic */}
-                  <div className="w-52 h-44 relative flex items-center justify-center mb-6">
-                    <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full select-none">
-                      {/* Background Soft Pink Ellipse */}
-                      <ellipse cx="100" cy="110" rx="65" ry="45" fill="#fcf0f7" />
-                      
-                      {/* Dashed Prohibited Circle */}
-                      <circle cx="100" cy="95" r="50" fill="none" stroke="#eed8ea" strokeWidth="2.5" strokeDasharray="5 5" />
-                      <line x1="65" y1="60" x2="135" y2="130" stroke="#eed8ea" strokeWidth="2.5" />
-
-                      {/* Leaves decoration bottom left */}
-                      <path d="M45 120 C35 110 38 125 45 120 Z" fill="#edd6ea" />
-                      <path d="M155 120 C165 110 162 125 155 120 Z" fill="#edd6ea" />
-
-                      {/* Lavender Folder Back */}
-                      <rect x="50" y="55" width="100" height="70" rx="8" fill="#c3c8e8" />
-                      <path d="M50 63 C50 58 55 53 60 53 L85 53 L95 63 L145 63 C150 63 150 68 150 73 L150 120 Z" fill="#b0b7e2" />
-
-                      {/* Folder Front Flap */}
-                      <rect x="45" y="70" width="110" height="55" rx="8" fill="#dce0f5" stroke="#b0b7e2" strokeWidth="1.5" />
-
-                      {/* Magenta Prohibited Cross Circle Badge */}
-                      <circle cx="115" cy="98" r="14" fill="#673391" />
-                      <path d="M109 92 L121 104 M121 92 L109 104" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                  </div>
-
-                  {/* Title & Message */}
-                  <h3 className="text-xl font-extrabold text-[#673391] mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>
-                    No policies found.
-                  </h3>
-                  
-                  <p className="text-xs font-semibold text-slate-500 max-w-md leading-relaxed">
-                    You can <span className="font-bold text-slate-700">link</span> your existing SBI Life policies or explore new policies to <span className="font-bold text-slate-700">meet all</span> your insurance needs.
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-          )}
-
+         
         </div>
 
       </main>

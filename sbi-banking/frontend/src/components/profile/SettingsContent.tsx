@@ -5,10 +5,10 @@ import { useAuthStore } from '@/store/authStore';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-import { 
-  Eye, EyeOff, Edit2, CheckCircle2, ChevronRight, ChevronDown, Home, 
-  User, CreditCard, Shield, Lock, Award, HelpCircle, MessageSquare, 
-  Search, Bell, Building2, Phone, X, Info, Share2, AlertTriangle, 
+import {
+  Eye, EyeOff, Edit2, CheckCircle2, ChevronRight, ChevronDown, Home,
+  User, CreditCard, Shield, Lock, Award, HelpCircle, MessageSquare,
+  Search, Bell, Building2, Phone, X, Info, Share2, AlertTriangle,
   FileText, Gauge, DollarSign, Ban, Key, Car, Sparkles, Wallet, Settings as SettingsIcon,
   Smartphone, ArrowLeftRight, Globe, Unlock, RefreshCw
 } from 'lucide-react';
@@ -20,7 +20,7 @@ export default function SettingsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { logout, user } = useAuthStore();
-  
+
   // Navigation States
   const [activeSidebarMenu, setActiveSidebarMenu] = useState('Manage My Profile');
   const [profileTab, setProfileTab] = useState<'personal' | 'professional'>('personal');
@@ -90,7 +90,7 @@ export default function SettingsContent() {
   // View 3: Access Services Search
   const [serviceSearch, setServiceSearch] = useState('');
 
-  const fullName = user?.full_name || 'DUMPALA VISHNU VARDHAN';
+  const fullName = user?.full_name || 'MADHU';
   const nameParts = fullName.split(' ');
   const initials = nameParts.map((n: string) => n[0]).join('').slice(0, 2).toUpperCase() || 'DV';
 
@@ -101,14 +101,14 @@ export default function SettingsContent() {
 
   return (
     <div className="dashboard-wrapper">
-      
+
       {/* ================= GLOBAL BRAND HEADER ================= */}
       <SbiGlobalBrandHeader activeNav="Services" />
 
       {/* ================= MAIN PROFILE CONTENT ================= */}
       <main className="profile-page-wrapper">
         <div className="profile-main-container">
-          
+
           {/* Dynamic Breadcrumb (Matching Screenshot 4) */}
           <div className="profile-breadcrumb flex items-center gap-2 select-none text-slate-400 mb-6 text-xs font-medium">
             <Link href="/dashboard" className="hover:text-purple-800 flex items-center">
@@ -119,10 +119,10 @@ export default function SettingsContent() {
           </div>
 
           <div className="profile-grid-layout">
-            
+
             {/* Left Sidebar Panel */}
             <div className="profile-left-sidebar">
-              
+
               {/* User Avatar Card */}
               <div className="profile-user-card">
                 <div className="profile-avatar-wrapper">
@@ -150,8 +150,8 @@ export default function SettingsContent() {
 
                 <div className="profile-cif-text">
                   <span>CIF: {showCif ? '9876545720' : 'xxxxxxx5720'}</span>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     onClick={() => setShowCif(!showCif)}
                     className="eye-mask-icon border-0 bg-none p-0"
                     title={showCif ? "Hide CIF" : "Show CIF"}
@@ -201,16 +201,16 @@ export default function SettingsContent() {
 
             {/* Right Main Panel */}
             <div className="profile-right-panel">
-              
+
               {/* ================= VIEW 1: MANAGE MY PROFILE (Screenshot 1 Exact) ================= */}
               {activeSidebarMenu === 'Manage My Profile' && (
                 <div>
-                  
+
                   {/* Tabs Header Row */}
                   <div className="profile-tabs-header">
                     <div className="profile-tabs-left">
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => setProfileTab('personal')}
                         className={`profile-tab-btn ${profileTab === 'personal' ? 'active' : ''}`}
                       >
@@ -218,8 +218,8 @@ export default function SettingsContent() {
                         <span className="info-circle-badge">!</span>
                       </button>
 
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => setProfileTab('professional')}
                         className={`profile-tab-btn ${profileTab === 'professional' ? 'active' : ''}`}
                       >
@@ -359,7 +359,7 @@ export default function SettingsContent() {
                   {profileTab === 'professional' && (
                     <div className="pt-4">
                       <div className="profile-select-grid">
-                        
+
                         {/* Occupation */}
                         <div className="profile-select-wrapper">
                           <label htmlFor="occupation" className="profile-select-label">Occupation</label>
@@ -399,12 +399,12 @@ export default function SettingsContent() {
                           <label htmlFor="annual-income-input" className="profile-select-label">Annual Income</label>
                           <div className="flex items-center gap-1">
                             <span className="text-slate-400 font-bold text-sm">₹</span>
-                            <input 
+                            <input
                               id="annual-income-input"
-                              type="text" 
-                              value={annualIncome} 
+                              type="text"
+                              value={annualIncome}
                               onChange={(e) => setAnnualIncome(e.target.value)}
-                              className="profile-select-input" 
+                              className="profile-select-input"
                             />
                           </div>
                         </div>
@@ -423,8 +423,8 @@ export default function SettingsContent() {
                       </div>
 
                       <div className="mt-8 flex justify-end">
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           onClick={() => toast.success("Professional Details updated successfully!")}
                           className="bg-purple-900 text-white font-bold px-8 py-2.5 rounded-full hover:bg-purple-950 transition-all text-sm"
                         >
@@ -440,7 +440,7 @@ export default function SettingsContent() {
               {/* ================= VIEW 2: MANAGE MY ACCOUNTS (Screenshot 2 Exact) ================= */}
               {activeSidebarMenu === 'Manage My Accounts' && (
                 <div>
-                  
+
                   {/* Top Apply for Joint Savings Account */}
                   <div className="acc-header-links">
                     <a href="https://onlineapply.sbi.bank.in" target="_blank" rel="noopener noreferrer" className="joint-acc-link">
@@ -450,8 +450,8 @@ export default function SettingsContent() {
 
                   {/* Horizontal Tabs Row */}
                   <div className="acc-tabs-scroll-container">
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={() => {
                         const el = document.getElementById('tabsScrollRow');
                         if (el) el.scrollLeft -= 150;
@@ -460,15 +460,15 @@ export default function SettingsContent() {
                     >
                       &#9664;
                     </button>
-                    
+
                     <div className="acc-tabs-row-scrollable select-none" id="tabsScrollRow">
                       {[
-                        'Account Details', 'Change Home Branch', 'Convert to Salary Account', 
+                        'Account Details', 'Change Home Branch', 'Convert to Salary Account',
                         'Manage Nominee', 'Manage Transaction Right', 'Auto Sweep Facility'
                       ].map((tab) => (
-                        <button 
-                          key={tab} 
-                          type="button" 
+                        <button
+                          key={tab}
+                          type="button"
                           onClick={() => setAccountsSubTab(tab)}
                           className={`acc-tab-btn ${accountsSubTab === tab ? 'active' : ''}`}
                         >
@@ -477,8 +477,8 @@ export default function SettingsContent() {
                       ))}
                     </div>
 
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={() => {
                         const el = document.getElementById('tabsScrollRow');
                         if (el) el.scrollLeft += 150;
@@ -492,7 +492,7 @@ export default function SettingsContent() {
                   {accountsSubTab === 'Manage Nominee' && (
                     /* ================= MANAGE NOMINEE TAB VIEW ================= */
                     <div className="space-y-6 animate-in fade-in duration-150">
-                      
+
                       {/* Account Selector Box (Screenshot 2 Exact) */}
                       <div className="bg-white rounded-2xl border border-slate-200/85 p-5 flex items-center justify-between shadow-2xs">
                         <div className="flex items-center gap-3">
@@ -508,8 +508,8 @@ export default function SettingsContent() {
                               <span className="text-sm font-bold text-slate-800 tracking-wide font-sans">
                                 XXXXXXX7054
                               </span>
-                              <button 
-                                type="button" 
+                              <button
+                                type="button"
                                 onClick={() => toast.success("Account Details Visible")}
                                 className="text-[#673391] hover:opacity-80 transition-opacity"
                               >
@@ -560,7 +560,7 @@ export default function SettingsContent() {
                             D BHAGAYA LAKSHMI
                           </div>
                         </div>
-                        
+
                         <div className="md:text-right">
                           <div className="text-xs font-semibold text-slate-500 mb-1 font-sans">
                             Share (%)
@@ -587,9 +587,9 @@ export default function SettingsContent() {
 
                       {/* Services Cards Grid */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12">
-                        
+
                         {/* Card 1 */}
-                        <div 
+                        <div
                           onClick={() => toast.success("Viewing Nominee Update Status...")}
                           className="bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between shadow-2xs hover:shadow-md transition-all cursor-pointer group"
                         >
@@ -610,7 +610,7 @@ export default function SettingsContent() {
                         </div>
 
                         {/* Card 2 */}
-                        <div 
+                        <div
                           onClick={() => toast.success("Managing PPF Nominee...")}
                           className="bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between shadow-2xs hover:shadow-md transition-all cursor-pointer group"
                         >
@@ -631,7 +631,7 @@ export default function SettingsContent() {
                         </div>
 
                         {/* Card 3 */}
-                        <div 
+                        <div
                           onClick={() => toast.success("Viewing Nominee Registration Status...")}
                           className="bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between shadow-2xs hover:shadow-md transition-all cursor-pointer group"
                         >
@@ -652,7 +652,7 @@ export default function SettingsContent() {
                         </div>
 
                         {/* Card 4 */}
-                        <div 
+                        <div
                           onClick={() => toast.success("Managing SCSS Nominee...")}
                           className="bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between shadow-2xs hover:shadow-md transition-all cursor-pointer group"
                         >
@@ -673,7 +673,7 @@ export default function SettingsContent() {
                         </div>
 
                         {/* Card 5 */}
-                        <div 
+                        <div
                           onClick={() => toast.success("Managing FD/RD Accounts Nominee...")}
                           className="bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between shadow-2xs hover:shadow-md transition-all cursor-pointer group"
                         >
@@ -694,7 +694,7 @@ export default function SettingsContent() {
                         </div>
 
                         {/* Card 6 */}
-                        <div 
+                        <div
                           onClick={() => toast.success("Managing Locker Nominee...")}
                           className="bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between shadow-2xs hover:shadow-md transition-all cursor-pointer group"
                         >
@@ -735,8 +735,8 @@ export default function SettingsContent() {
 
                       {/* Account Info Gray Card */}
                       <div className="acc-info-gray-card">
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           onClick={() => toast.success("Account Details Copied / Shared!")}
                           className="share-details-link border-0 bg-none"
                         >
@@ -906,13 +906,13 @@ export default function SettingsContent() {
               {/* ================= VIEW 3: ACCESS SERVICES (Screenshot 3 Exact) ================= */}
               {activeSidebarMenu === 'Access Services' && (
                 <div>
-                  
+
                   {/* Search Input */}
                   <div className="relative">
                     <Search size={18} className="absolute left-3.5 top-3.5 text-gray-400" />
-                    <input 
-                      type="text" 
-                      placeholder="Search here..." 
+                    <input
+                      type="text"
+                      placeholder="Search here..."
                       value={serviceSearch}
                       onChange={(e) => setServiceSearch(e.target.value)}
                       className="services-search-input"
@@ -1013,29 +1013,27 @@ export default function SettingsContent() {
               {/* ================= VIEW 4: SETTINGS (Screenshot 4 Exact) ================= */}
               {activeSidebarMenu === 'Settings' && (
                 <div className="w-full">
-                  
+
                   {/* Settings Tabs Row */}
                   <div className="flex border-b border-slate-200 gap-8 mb-6 select-none w-full">
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={() => setSettingsSubTab('Payments')}
-                      className={`pb-3 text-sm font-bold flex items-center gap-1.5 focus:outline-none transition-all cursor-pointer bg-transparent ${
-                        settingsSubTab === 'Payments' 
-                          ? 'text-[#681d82] border-b-2 border-[#681d82]' 
+                      className={`pb-3 text-sm font-bold flex items-center gap-1.5 focus:outline-none transition-all cursor-pointer bg-transparent ${settingsSubTab === 'Payments'
+                          ? 'text-[#681d82] border-b-2 border-[#681d82]'
                           : 'text-slate-400 hover:text-slate-600 border-b-2 border-transparent'
-                      }`}
+                        }`}
                     >
                       <span>Third Party Transaction Limit</span>
                       <Info size={14} className={settingsSubTab === 'Payments' ? 'text-[#681d82]' : 'text-slate-400'} />
                     </button>
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={() => setSettingsSubTab('Personalise Settings')}
-                      className={`pb-3 text-sm font-bold flex items-center gap-1.5 focus:outline-none transition-all bg-transparent border-none cursor-pointer ${
-                        settingsSubTab === 'Personalise Settings' 
-                          ? 'text-[#681d82] border-b-2 border-[#681d82]' 
+                      className={`pb-3 text-sm font-bold flex items-center gap-1.5 focus:outline-none transition-all bg-transparent border-none cursor-pointer ${settingsSubTab === 'Personalise Settings'
+                          ? 'text-[#681d82] border-b-2 border-[#681d82]'
                           : 'text-slate-400 hover:text-slate-600 border-b-2 border-transparent'
-                      }`}
+                        }`}
                     >
                       <span>Other Transaction Limits</span>
                       <Info size={14} className={settingsSubTab === 'Personalise Settings' ? 'text-[#681d82]' : 'text-slate-400'} />
@@ -1056,7 +1054,7 @@ export default function SettingsContent() {
                             <div className="profile-limit-card-title">
                               Third party transactions* <span className="font-semibold text-slate-700 ml-1">(INR) Max Limit 2500000</span>
                             </div>
-                            
+
                             <div className="space-y-1">
                               <div className="profile-limit-card-label">
                                 Current Limit (per day)
@@ -1068,7 +1066,7 @@ export default function SettingsContent() {
                           </div>
 
                           {/* Edit Pencil Icon Button */}
-                          <button 
+                          <button
                             type="button"
                             onClick={() => {
                               toast.success("Edit Limit clicked. Enter your profile password to modify.");
@@ -1085,7 +1083,7 @@ export default function SettingsContent() {
                   {/* Other Transaction Limits (Personalise Settings) Content */}
                   {settingsSubTab === 'Personalise Settings' && (
                     <div className="space-y-4 max-w-[800px]">
-                      
+
                       {/* Card 1: Tax Transaction Limit */}
                       <div className="profile-limit-card">
                         <div className="flex justify-between items-start">
@@ -1105,7 +1103,7 @@ export default function SettingsContent() {
                               </div>
                             </div>
                           </div>
-                          <button 
+                          <button
                             type="button"
                             onClick={() => toast.success("Edit Tax Limit clicked")}
                             className="p-1.5 text-[#681d82] hover:bg-purple-100 rounded-full transition-colors bg-transparent border-none cursor-pointer"
@@ -1134,7 +1132,7 @@ export default function SettingsContent() {
                               </div>
                             </div>
                           </div>
-                          <button 
+                          <button
                             type="button"
                             onClick={() => toast.success("Edit State Bank Collect Limit clicked")}
                             className="p-1.5 text-[#681d82] hover:bg-purple-100 rounded-full transition-colors bg-transparent border-none cursor-pointer"
@@ -1160,7 +1158,7 @@ export default function SettingsContent() {
                               </div>
                             </div>
                           </div>
-                          <button 
+                          <button
                             type="button"
                             onClick={() => toast.success("Edit General Category Limit clicked")}
                             className="p-1.5 text-[#681d82] hover:bg-purple-100 rounded-full transition-colors bg-transparent border-none cursor-pointer"
@@ -1186,7 +1184,7 @@ export default function SettingsContent() {
                               </div>
                             </div>
                           </div>
-                          <button 
+                          <button
                             type="button"
                             onClick={() => toast.success("Edit Special Category Limit clicked")}
                             className="p-1.5 text-[#681d82] hover:bg-purple-100 rounded-full transition-colors bg-transparent border-none cursor-pointer"
@@ -1205,20 +1203,20 @@ export default function SettingsContent() {
               {/* Update My Security View (Matching Screenshot 2) */}
               {activeSidebarMenu === 'Update My Security' && (
                 <div className="w-full animate-in fade-in duration-150">
-                  
+
                   {/* Security Tabs Header Row */}
                   <div className="profile-tabs-header">
                     <div className="profile-tabs-left overflow-x-auto w-full select-none pb-1">
                       {[
-                        'Manage YONO Mobile', 
-                        'YONO Net Banking', 
-                        'Manage Channel Access', 
-                        'e-Secure Lock', 
+                        'Manage YONO Mobile',
+                        'YONO Net Banking',
+                        'Manage Channel Access',
+                        'e-Secure Lock',
                         'Security Questions'
                       ].map((tab) => (
-                        <button 
+                        <button
                           key={tab}
-                          type="button" 
+                          type="button"
                           onClick={() => setSecuritySubTab(tab)}
                           className={`profile-tab-btn whitespace-nowrap ${securitySubTab === tab ? 'active' : ''}`}
                         >
@@ -1231,7 +1229,7 @@ export default function SettingsContent() {
                   {/* Tab Contents */}
                   {securitySubTab === 'Manage YONO Mobile' && (
                     <div className="space-y-4 max-w-xl">
-                      <div 
+                      <div
                         onClick={() => toast.success("De-register YONO Mobile Account clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1246,7 +1244,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Transaction Authentication clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1265,7 +1263,7 @@ export default function SettingsContent() {
 
                   {securitySubTab === 'YONO Net Banking' && (
                     <div className="space-y-4 max-w-xl">
-                      <div 
+                      <div
                         onClick={() => toast.success("Change Login Password clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1280,7 +1278,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Change Profile Password clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1295,7 +1293,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Manage Friendly Name / Alias clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1314,7 +1312,7 @@ export default function SettingsContent() {
 
                   {securitySubTab === 'Manage Channel Access' && (
                     <div className="space-y-4 max-w-xl">
-                      <div 
+                      <div
                         onClick={() => toast.success("Manage Internet Banking access clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1329,7 +1327,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Manage Mobile Banking access clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1344,7 +1342,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Manage UPI Services access clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1363,7 +1361,7 @@ export default function SettingsContent() {
 
                   {securitySubTab === 'e-Secure Lock' && (
                     <div className="space-y-4 max-w-xl">
-                      <div 
+                      <div
                         onClick={() => toast.success("Lock Netbanking Access clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1378,7 +1376,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Unlock Netbanking Access clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1397,7 +1395,7 @@ export default function SettingsContent() {
 
                   {securitySubTab === 'Security Questions' && (
                     <div className="space-y-4 max-w-xl">
-                      <div 
+                      <div
                         onClick={() => toast.success("Set Security Questions clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1412,7 +1410,7 @@ export default function SettingsContent() {
                         <ChevronRight size={18} className="text-slate-400 group-hover:text-[#673391] transition-colors" />
                       </div>
 
-                      <div 
+                      <div
                         onClick={() => toast.success("Reset Security Questions clicked")}
                         className="flex items-center justify-between p-4 bg-white border border-slate-200/80 hover:border-purple-300 rounded-2xl shadow-xs hover:shadow-md transition-all cursor-pointer group"
                       >
@@ -1442,7 +1440,7 @@ export default function SettingsContent() {
                   <p className="text-slate-500 text-sm max-w-sm mx-auto mb-6">
                     This module is active and ready for your banking preferences and security configurations.
                   </p>
-                  <button 
+                  <button
                     type="button"
                     onClick={() => setActiveSidebarMenu('Manage My Profile')}
                     className="bg-purple-900 text-white font-bold px-6 py-2 rounded-full text-xs hover:bg-purple-950"

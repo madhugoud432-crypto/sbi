@@ -18,6 +18,12 @@
 **/*.sqlite
 **/*.db
 
+# Large archives & uploads
+*.zip
+**/*.zip
+**/uploads/
+**/sample_statement_*
+
 # IDE & OS
 .vscode/
 .idea/

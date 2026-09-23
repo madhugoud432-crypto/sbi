@@ -2,6 +2,7 @@
 
 import React, { Suspense } from 'react';
 import SbiLandingPageComponent from '@/components/banking/SbiLandingPageComponent';
+import InvestmentsRelationshipOverviewPage from '@/app/investments/page';
 import { useParams } from 'next/navigation';
 
 export default function ManageRelationshipPage() {
@@ -13,24 +14,15 @@ export default function ManageRelationshipPage() {
 
   if (slug && slug.length > 0) {
     const firstSlug = slug[0].toLowerCase();
+    if (firstSlug === 'investments') {
+      return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#f3f4f9] text-sm text-slate-500">Loading Investments...</div>}>
+          <InvestmentsRelationshipOverviewPage />
+        </Suspense>
+      );
+    }
     if (firstSlug === 'loans') {
       initialTab = 'Loans';
-    } else if (firstSlug === 'investments') {
-      initialTab = 'Investments';
-      if (slug.length > 1) {
-        const subSlug = slug[1].toLowerCase();
-        if (subSlug.includes('demat')) {
-          initialInvestmentSubTab = 'Demat & Securities';
-        } else if (subSlug.includes('ppf')) {
-          initialInvestmentSubTab = 'PPF';
-        } else if (subSlug.includes('nps')) {
-          initialInvestmentSubTab = 'NPS';
-        } else if (subSlug.includes('ipo')) {
-          initialInvestmentSubTab = 'IPO';
-        } else {
-          initialInvestmentSubTab = 'Mutual Fund';
-        }
-      }
     } else if (firstSlug === 'insurance') {
       initialTab = 'Insurance';
     } else if (firstSlug === 'deposits') {

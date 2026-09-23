@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class InMemoryRedis:
     def __init__(self):
         self._store = {}
-        logger.warning("⚠️ Redis connection failed. Falling back to InMemoryRedis.")
+        logger.warning("[WARNING] Redis connection failed. Falling back to InMemoryRedis.")
 
     def set(self, key: str, value: str, ex: int = None, px: int = None, nx: bool = False, xx: bool = False):
         expire_at = (time.time() + ex) if ex else None

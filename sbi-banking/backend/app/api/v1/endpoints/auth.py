@@ -42,6 +42,8 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     return {
         "session_token": session_token,
         "message": f"OTP sent to registered mobile. (Demo OTP: {otp})",
+        "demo_otp": otp,
+        "otp": otp,
         "otp_required": True,
     }
 
